@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f4f7fa; padding: 20px; }
+        .email-container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 40px 30px; text-align: center; }
+        .logo { font-size: 32px; font-weight: bold; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(45deg, #27ae60, #2ecc71); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .subtitle { font-size: 18px; opacity: 0.9; font-weight: 300; }
+        .content { padding: 40px 30px; }
+        .greeting { font-size: 24px; color: #2c3e50; margin-bottom: 20px; font-weight: 600; }
+        .welcome-text { color: #555; font-size: 16px; margin-bottom: 30px; line-height: 1.7; }
+        .highlight-box { background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 100%); border-left: 4px solid #27ae60; padding: 25px; margin: 30px 0; border-radius: 8px; }
+        .highlight-title { font-size: 18px; font-weight: 600; color: #2c3e50; margin-bottom: 15px; }
+        .cta-button { display: inline-block; background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; text-decoration: none; padding: 16px 32px; border-radius: 50px; font-size: 16px; font-weight: 600; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3); margin: 20px 0; }
+        .button-container { text-align: center; margin: 30px 0; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
+        .info-card { background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .info-title { font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-value { color: #555; font-size: 16px; }
+        .warning-box { background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 20px; margin: 30px 0; }
+        .warning-text { color: #856404; font-size: 14px; display: flex; align-items: center; }
+        .warning-icon { color: #f39c12; font-size: 20px; margin-right: 10px; }
+        .footer { background: #f8fafc; padding: 30px; text-align: center; border-top: 1px solid #e2e8f0; }
+        .footer-text { color: #64748b; font-size: 14px; margin-bottom: 15px; }
+        .contact-info { color: #3498db; font-size: 14px; text-decoration: none; }
+        @media (max-width: 600px) {
+            .email-container { margin: 10px; border-radius: 8px; }
+            .header, .content, .footer { padding: 25px 20px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .greeting { font-size: 20px; }
+            .logo { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <span th:text="${companyName}"></span>
+        </div>
+        <div class="subtitle">Intelligent Solutions Platform</div>
+    </div>
+
+    <div class="content">
+        <div class="greeting">Welcome, <span th:text="${firstName}"></span>!</div>
+
+        <div class="welcome-text">
+            We're excited to have you join the <span th:text="${companyName}"></span> team! Your account has been successfully created by your administrator, and you're just one step away from accessing our platform.
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">🔐 Account Setup Required</div>
+            <p>To secure your account and get started, you'll need to create your password. This is a one-time setup process that ensures your account remains safe and secure.</p>
+        </div>
+
+        <div class="button-container">
+            <a href="${setupUrl}" class="cta-button">Set Up Password</a>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-title">Your Email</div>
+                <div class="info-value"><span th:text="${email}"></span></div>
+            </div>
+            <div class="info-card">
+                <div class="info-title">Login URL</div>
+                <div class="info-value"><a th:href="${loginUrl}">Login URL</a></div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <div class="warning-text">
+                <span class="warning-icon">⚠️</span>
+                <span>This password setup link will expire in 7 days. If you don't set up your password within this time, please contact your administrator for assistance.</span>
+            </div>
+        </div>
+
+        <div class="welcome-text">
+            Once you've set up your password, you'll have full access to all the features and tools available in <span th:text="${companyName}"></span>. If you have any questions or need assistance, don't hesitate to reach out to your administrator or our support team.
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-text">
+            Need help? Contact your administrator or reach out to our support team.
+        </div>
+        <a href="mailto:support@greenbrain.nexus" class="contact-info">support@greenbrain.nexus</a>
+
+        <div style="margin-top: 20px; font-size: 12px; color: #94a3b8;">
+            © 2024 <span th:text="${companyName}"></span>. All rights reserved.<br>
+            This email was sent to <span th:text="${email}"></span> because an administrator created an account for you.
+        </div>
+    </div>
+</div>
+</body>
+</html>

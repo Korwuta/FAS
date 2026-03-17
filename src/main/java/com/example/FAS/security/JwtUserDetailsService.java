@@ -1,0 +1,22 @@
+package com.example.FAS.security;
+
+import com.example.FAS.repository.UserRepository;
+import com.example.FAS.repository.UserRoleRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class JwtUserDetailsService implements UserDetailsService {
+
+    private final UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return (UserDetails) userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
+    }
+}
