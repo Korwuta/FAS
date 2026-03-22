@@ -9,9 +9,9 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/FAS
-      SPRING_DATASOURCE_USERNAME: FAS
-      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-d70341n5r7bs73f4dia0-a:5432/fas_98br
+      SPRING_DATASOURCE_USERNAME: fas
+      SPRING_DATASOURCE_PASSWORD: Ojd8sDaLawnSt7PGpXYVWDUGECpjx0ep
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     networks:
       - spring-network
