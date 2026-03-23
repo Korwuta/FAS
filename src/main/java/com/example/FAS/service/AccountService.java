@@ -33,9 +33,6 @@ public class AccountService {
         if(accountRepository.existsByAccountCodeAndIdNot(accountRequest.getAccountCode(),id)){
             throw new DuplicateResourceException("Account already exists");
         }
-//        AccountType accountType = accountTypeRepository
-//                .findById(accountRequest.getAccountTypeId())
-//                .orElseThrow(()-> new ResourceNotFoundException("Account type not found!"));
         AccountCategory accountCategory = accountCategoryRepository
                 .findById(accountRequest.getAccountCategoryId())
                 .orElseThrow(()-> new ResourceNotFoundException("Account category not found!"));
