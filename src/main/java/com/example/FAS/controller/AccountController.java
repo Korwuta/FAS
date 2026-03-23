@@ -39,7 +39,7 @@ public class AccountController {
     public ResponseEntity<List<AccountResponse>> getAccounts(){
         return ResponseEntity.ok(accountService.getAccounts());
     }
-    @PostMapping("/{accountId}/approve")
+    @PostMapping("/{accountId}/approval-process")
     public ResponseEntity<MessageResponse> approveAccount(@PathVariable Long accountId
             , @RequestBody AccountApprovalRequest accountApprovalRequest, @AuthenticationPrincipal User user){
         return ResponseEntity.ok(accountService.approvalAccountProcess(accountId
