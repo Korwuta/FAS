@@ -1,7 +1,7 @@
 package com.example.FAS.repository;
 
-import com.example.FAS.model.ApprovalHistory;
+import com.example.FAS.model.AccountApprovalHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ApprovalHistoryRepository extends JpaRepository<ApprovalHistory,Long> {
+public interface ApprovalHistoryRepository extends JpaRepository<AccountApprovalHistory,Long> {
 }

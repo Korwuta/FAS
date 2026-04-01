@@ -1,14 +1,11 @@
 package com.example.FAS.controller;
 
-import com.example.FAS.dto.request.AccountApprovalRequest;
+import com.example.FAS.dto.request.ApprovalRequest;
 import com.example.FAS.dto.request.AccountRequest;
-import com.example.FAS.dto.request.AccountTypeRequest;
 import com.example.FAS.dto.response.AccountResponse;
-import com.example.FAS.dto.response.AccountTypeResponse;
 import com.example.FAS.dto.response.MessageResponse;
 import com.example.FAS.model.User;
 import com.example.FAS.service.AccountService;
-import com.example.FAS.service.AccountTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,8 +38,8 @@ public class AccountController {
     }
     @PostMapping("/{accountId}/approval-process")
     public ResponseEntity<MessageResponse> approveAccount(@PathVariable Long accountId
-            , @RequestBody AccountApprovalRequest accountApprovalRequest, @AuthenticationPrincipal User user){
+            , @RequestBody ApprovalRequest approvalRequest, @AuthenticationPrincipal User user){
         return ResponseEntity.ok(accountService.approvalAccountProcess(accountId
-                ,accountApprovalRequest,user));
+                , approvalRequest,user));
     }
 }

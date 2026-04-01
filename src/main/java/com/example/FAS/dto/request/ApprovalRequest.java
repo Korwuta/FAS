@@ -3,6 +3,6 @@ package com.example.FAS.dto.request;
 import lombok.Data;
 
 @Data
-public class AccountApprovalRequest {
+public class ApprovalRequest {
     private Long approvalStageId;
 }

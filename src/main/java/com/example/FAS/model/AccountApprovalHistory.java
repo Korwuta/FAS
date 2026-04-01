@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ApprovalHistory {
+public class AccountApprovalHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

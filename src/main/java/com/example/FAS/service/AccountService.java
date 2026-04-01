@@ -1,6 +1,6 @@
 package com.example.FAS.service;
 
-import com.example.FAS.dto.request.AccountApprovalRequest;
+import com.example.FAS.dto.request.ApprovalRequest;
 import com.example.FAS.dto.request.AccountRequest;
 import com.example.FAS.dto.response.AccountResponse;
 import com.example.FAS.dto.response.MessageResponse;
@@ -64,13 +64,13 @@ public class AccountService {
                 .orElseThrow(()-> new ResourceNotFoundException("Account not found!"));
         return accountMapper.toAccountResponse(account);
     }
-    public MessageResponse approvalAccountProcess(Long accountId, AccountApprovalRequest accountApprovalRequest, User user){
+    public MessageResponse approvalAccountProcess(Long accountId, ApprovalRequest approvalRequest, User user){
         UserRole userRole = user.getUserRole();
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(()-> new ResourceNotFoundException("Account not found!"));
         ApprovalStage fromStage = account.getApprovalStage();
         ApprovalStage toStage = approvalStageRepository
-                .findById(accountApprovalRequest.getApprovalStageId())
+                .findById(approvalRequest.getApprovalStageId())
                 .orElseThrow(()->new ResourceNotFoundException("Approval stage not found!"));
         if(!workflowRoleRepository
                 .existsByUserRoleAndFromStageAndToStage(userRole,fromStage,toStage)){
@@ -83,13 +83,13 @@ public class AccountService {
                     .orElseThrow(()-> new ResourceNotFoundException("Status doesn't exist")));
         }
         accountRepository.save(account);
-        ApprovalHistory approvalHistory = ApprovalHistory.builder()
+        AccountApprovalHistory accountApprovalHistory = AccountApprovalHistory.builder()
                 .account(account)
                 .approvalStage(toStage)
                 .approvedBy(user)
                 .comment("")
                 .build();
-        approvalHistoryRepository.save(approvalHistory);
+        approvalHistoryRepository.save(accountApprovalHistory);
         return new MessageResponse("Approved");
     }
     public List<AccountResponse> getAccounts(){
